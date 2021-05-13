@@ -8,8 +8,7 @@
             <!-- Email Address -->
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input class="form-control" id="email" type="email" name="email" value="{{ old('email') }}"
-                           required autofocus/>
+                    <input class="form-control" id="email" type="email" name="email" value="{{ old('email') }}" required autofocus/>
                 </div>
 
                 <!-- Password -->
