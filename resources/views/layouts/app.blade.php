@@ -13,6 +13,14 @@
 <body>
 <main class="container my-5">
     <div class="row justify-content-center my-5">
+        @if($errors->any())
+            <div class="alert alert-warning">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+            </div>
+        @endif
+
         @yield('content')
     </div>
 </main>
