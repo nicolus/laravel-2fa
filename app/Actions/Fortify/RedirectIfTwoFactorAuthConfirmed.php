@@ -5,9 +5,9 @@ namespace App\Actions\Fortify;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 
-class RedirectIfTwoFactorAuthConfirmed extends RedirectIfTwoFactorAuthenticatable {
-
-
+class RedirectIfTwoFactorAuthConfirmed extends RedirectIfTwoFactorAuthenticatable
+{
+    
     public function handle($request, $next)
     {
         $user = $this->validateCredentials($request);

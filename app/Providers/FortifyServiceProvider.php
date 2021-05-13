@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
+use App\Actions\Fortify\DisableTwoFactorAuthentication as ReallyDisableTwoFactorAuthentication;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthConfirmed;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
+use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Features;
@@ -50,6 +52,10 @@ class FortifyServiceProvider extends ServiceProvider
                 AttemptToAuthenticate::class,
                 PrepareAuthenticatedSession::class,
             ]);
+        });
+
+        $this->app->bind(DisableTwoFactorAuthentication::class, function(){
+            return new ReallyDisableTwoFactorAuthentication();
         });
 
         RateLimiter::for('login', function (Request $request) {
